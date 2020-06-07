@@ -1,4 +1,4 @@
-import requests
+import requests, sys
 from bs4 import BeautifulSoup
 from pprint import pprint
 import re
@@ -55,7 +55,11 @@ class News:
 
 
 news = News()
-news_type=int(input("보고싶은 뉴스 번호를 선택하세요:\n1:정치\n2:경제\n3:사회\n4:생활/문화\n5:세계\n6:IT/과학\n👉 "))
+try:
+    news_type=int(input("보고싶은 뉴스 번호를 선택하세요:\n1:정치\n2:경제\n3:사회\n4:생활/문화\n5:세계\n6:IT/과학\n👉 "))
+except ValueError:
+    print("Type an integer between 1 and 6")
+    sys.exit()
 
 if news_type == 1:
     news.politics()
@@ -70,5 +74,5 @@ elif news_type == 6:
 elif news_type == 5:
     news.world()
 else:
-    print("잘못된 요청입니다")
+    print("Invalid number")
 
