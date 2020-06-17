@@ -1,7 +1,7 @@
 import requests, sys
 from bs4 import BeautifulSoup
 from pprint import pprint
-import re
+import re, sys
 from datetime import datetime
 from articleBody import getArticleBody
 
@@ -13,9 +13,9 @@ d = datetime.now()
 class News:
 
     base_url = 'https://news.naver.com/'
-    section = ['pol', 'eco', 'soc', 'lif', 'sci', 'wor']
-    sectionName = ['정치', '경제', '사회', '생활/문화', 'IT/과학', '세계']
-    timeFormat = d.strftime("%월%일 %I:%M %p")
+    section = ['pol', 'eco', 'soc', 'lif', 'wor', 'sci']
+    sectionName = ['정치', '경제', '사회', '생활/문화', '세계', 'IT/과학']
+    timeFormat = d.strftime("%m월%d일 %I:%M %p")
 
     def politics(self):
         base_url = self.base_url
@@ -30,10 +30,12 @@ class News:
             title = headline.text
             print(f'{i} | {title}\n{url}')
             newsUrls.append(url)
-
-        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
-        print(f'{choice + 1}| {tag_all[choice].text}')
+        try:
+            choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        except ValueError:
+            sys.exit()
         print()
+        print(f'{choice + 1}| {tag_all[choice].text}')
         url = newsUrls[choice]
         getArticleBody(url)
 
@@ -50,10 +52,12 @@ class News:
             title = headline.text
             print(f'{i} | {title}\n{url}')
             newsUrls.append(url)
-
-        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
-        print(f'{choice + 1}| {tag_all[choice].text}')
+        try:
+            choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        except ValueError:
+            sys.exit()
         print()
+        print(f'{choice + 1}| {tag_all[choice].text}')
         url = newsUrls[choice]
         getArticleBody(url)
 
@@ -70,10 +74,13 @@ class News:
             title = headline.text
             print(f'{i} | {title}\n{url}')
             newsUrls.append(url)
+        try:
+            choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        except ValueError:
+            sys.exit()
 
-        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
-        print(f'{choice + 1}| {tag_all[choice].text}')
         print()
+        print(f'{choice + 1}| {tag_all[choice].text}')
         url = newsUrls[choice]
         getArticleBody(url)
 
@@ -90,15 +97,17 @@ class News:
             title = headline.text
             print(f'{i} | {title}\n{url}')
             newsUrls.append(url)
+        try:
+            choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        except ValueError:
+            sys.exit()
 
-        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
-        print(f'{choice + 1}| {tag_all[choice].text}')
         print()
+        print(f'{choice + 1}| {tag_all[choice].text}')
         url = newsUrls[choice]
         getArticleBody(url)
 
-
-    def science(self):
+    def world(self):
         base_url = self.base_url
         section = self.section
         sectionName = self.sectionName
@@ -111,15 +120,16 @@ class News:
             title = headline.text
             print(f'{i} | {title}\n{url}')
             newsUrls.append(url)
-
-        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
-        print(f'{choice + 1}| {tag_all[choice].text}')
+        try:
+            choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        except ValueError:
+            sys.exit()
         print()
+        print(f'{choice + 1}| {tag_all[choice].text}')
         url = newsUrls[choice]
         getArticleBody(url)
 
-
-    def world(self):
+    def science(self):
         base_url = self.base_url
         section = self.section
         sectionName = self.sectionName
@@ -132,10 +142,12 @@ class News:
             title = headline.text
             print(f'{i} | {title}\n{url}')
             newsUrls.append(url)
-
-        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
-        print(f'{choice + 1}| {tag_all[choice].text}')
+        try:
+            choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        except ValueError:
+            sys.exit()
         print()
+        print(f'{choice + 1}| {tag_all[choice].text}')
         url = newsUrls[choice]
         getArticleBody(url)
 
