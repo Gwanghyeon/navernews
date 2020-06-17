@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import re
 from datetime import datetime
+from articleBody import getArticleBody
 
 result = requests.get('https://news.naver.com/main/home.nhn')
 src = result.content
@@ -11,68 +12,141 @@ d = datetime.now()
 
 class News:
 
+    base_url = 'https://news.naver.com/'
+    section = ['pol', 'eco', 'soc', 'lif', 'sci', 'wor']
+    sectionName = ['정치', '경제', '사회', '생활/문화', 'IT/과학', '세계']
+    timeFormat = d.strftime("%월%일 %I:%M %p")
+
     def politics(self):
-        tag_all = soup.find_all(class_=re.compile("rig.rankpol"))
-        base_url = 'https://news.naver.com/'
-        print("\n가장 많이 본 뉴스: 정치", d.strftime("%Y-%m-%d %I:%M %p"))
+        base_url = self.base_url
+        section = self.section
+        sectionName = self.sectionName
+        timeFormat = self.timeFormat
+        tag_all = soup.find_all(class_=re.compile("rig.rank"+section[0]))
+        newsUrls = []
+        print("\n가장 많이 본 뉴스:"+sectionName[0], timeFormat)
         for i, headline in enumerate(tag_all, start=1):
-            print('{} | {}\n{}'.format(str(i), headline.text, base_url+headline.attrs['href']))
+            url = self.base_url + headline.attrs['href']
+            title = headline.text
+            print(f'{i} | {title}\n{url}')
+            newsUrls.append(url)
+
+        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        print(f'{choice + 1}| {tag_all[choice].text}')
+        print()
+        url = newsUrls[choice]
+        getArticleBody(url)
 
     def economy(self):
-        tag_all = soup.find_all(class_=re.compile("rig.rankeco"))
-        base_url = 'https://news.naver.com/'
-        print("\n가장 많이 본 뉴스: 경제", d.strftime("%Y-%m-%d %I:%M %p"))
+        base_url = self.base_url
+        section = self.section
+        sectionName = self.sectionName
+        timeFormat = self.timeFormat
+        tag_all = soup.find_all(class_=re.compile("rig.rank"+section[1]))
+        newsUrls = []
+        print("\n가장 많이 본 뉴스:"+sectionName[1], timeFormat)
         for i, headline in enumerate(tag_all, start=1):
-            print('{} | {}\n{}'.format(str(i), headline.text, base_url+headline.attrs['href']))
+            url = self.base_url + headline.attrs['href']
+            title = headline.text
+            print(f'{i} | {title}\n{url}')
+            newsUrls.append(url)
+
+        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        print(f'{choice + 1}| {tag_all[choice].text}')
+        print()
+        url = newsUrls[choice]
+        getArticleBody(url)
 
     def society(self):
-        tag_all = soup.find_all(class_=re.compile("rig.ranksoc"))
-        base_url = 'https://news.naver.com/'
-        print("\n가장 많이 본 뉴스: 사회", d.strftime("%Y-%m-%d %I:%M %p"))
+        base_url = self.base_url
+        section = self.section
+        sectionName = self.sectionName
+        timeFormat = self.timeFormat
+        tag_all = soup.find_all(class_=re.compile("rig.rank"+section[2]))
+        newsUrls = []
+        print("\n가장 많이 본 뉴스:"+sectionName[2], timeFormat)
         for i, headline in enumerate(tag_all, start=1):
-            print('{} | {}\n{}'.format(str(i), headline.text, base_url+headline.attrs['href']))
+            url = self.base_url + headline.attrs['href']
+            title = headline.text
+            print(f'{i} | {title}\n{url}')
+            newsUrls.append(url)
+
+        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        print(f'{choice + 1}| {tag_all[choice].text}')
+        print()
+        url = newsUrls[choice]
+        getArticleBody(url)
 
     def life(self):
-        tag_all = soup.find_all(class_=re.compile("rig.ranklif"))
-        base_url = 'https://news.naver.com/'
-        print("\n가장 많이 본 뉴스: 생활/문화", d.strftime("%Y-%m-%d %I:%M %p"))
+        base_url = self.base_url
+        section = self.section
+        sectionName = self.sectionName
+        timeFormat = self.timeFormat
+        tag_all = soup.find_all(class_=re.compile("rig.rank"+section[3]))
+        newsUrls = []
+        print("\n가장 많이 본 뉴스:"+sectionName[3], timeFormat)
         for i, headline in enumerate(tag_all, start=1):
-            print('{} | {}\n{}'.format(str(i), headline.text, base_url+headline.attrs['href']))
+            url = self.base_url + headline.attrs['href']
+            title = headline.text
+            print(f'{i} | {title}\n{url}')
+            newsUrls.append(url)
+
+        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        print(f'{choice + 1}| {tag_all[choice].text}')
+        print()
+        url = newsUrls[choice]
+        getArticleBody(url)
+
 
     def science(self):
-        tag_all = soup.find_all(class_=re.compile("rig.ranksci"))
-        base_url = 'https://news.naver.com/'
-        print("\n가장 많이 본 뉴스: IT/과학", d.strftime("%Y-%m-%d %I:%M %p"))
+        base_url = self.base_url
+        section = self.section
+        sectionName = self.sectionName
+        timeFormat = self.timeFormat
+        tag_all = soup.find_all(class_=re.compile("rig.rank"+section[4]))
+        newsUrls = []
+        print("\n가장 많이 본 뉴스:"+sectionName[4], timeFormat)
         for i, headline in enumerate(tag_all, start=1):
-            print('{} | {}\n{}'.format(str(i), headline.text, base_url+headline.attrs['href']))
+            url = self.base_url + headline.attrs['href']
+            title = headline.text
+            print(f'{i} | {title}\n{url}')
+            newsUrls.append(url)
+
+        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        print(f'{choice + 1}| {tag_all[choice].text}')
+        print()
+        url = newsUrls[choice]
+        getArticleBody(url)
+
 
     def world(self):
-        tag_all = soup.find_all(class_=re.compile("rig.rankwor"))
-        base_url = 'https://news.naver.com/'
-        print("\n가장 많이 본 뉴스: 세계", d.strftime("%Y-%m-%d %I:%M %p"))
+        base_url = self.base_url
+        section = self.section
+        sectionName = self.sectionName
+        timeFormat = self.timeFormat
+        tag_all = soup.find_all(class_=re.compile("rig.rank"+section[5]))
+        newsUrls = []
+        print("\n가장 많이 본 뉴스:"+sectionName[5], timeFormat)
         for i, headline in enumerate(tag_all, start=1):
-            print('{} | {}\n{}'.format(str(i), headline.text, base_url+headline.attrs['href']))
+            url = self.base_url + headline.attrs['href']
+            title = headline.text
+            print(f'{i} | {title}\n{url}')
+            newsUrls.append(url)
 
+        choice = int(input('\n읽고 싶으신 기사 번호를 선택하세요: ')) - 1
+        print(f'{choice + 1}| {tag_all[choice].text}')
+        print()
+        url = newsUrls[choice]
+        getArticleBody(url)
 
 news = News()
+sectionNumDict = {1: news.politics, 2: news.economy, 3: news.society, 4: news.life, 5: news.world, 6: news.science}
+
 try:
-    news_type=int(input("보고싶은 뉴스 번호를 선택하세요:\n1:정치\n2:경제\n3:사회\n4:생활/문화\n5:세계\n6:IT/과학\n👉 "))
+    newsType=int(input("보고싶은 뉴스 번호를 선택하세요:\n1:정치\n2:경제\n3:사회\n4:생활/문화\n5:세계\n6:IT/과학\n👉 "))
 except ValueError:
-    print("Type an integer between 1 and 6")
+    print("1부터 6까지 숫자만 눌러주세요")
     sys.exit()
 
-if news_type == 1:
-    news.politics()
-elif news_type == 2:
-    news.economy()
-elif news_type == 3:
-    news.society()
-elif news_type == 4:
-    news.life()
-elif news_type == 6:
-    news.science()
-elif news_type == 5:
-    news.world()
-else:
-    print("Invalid number")
+sectionNumDict[newsType]()
 
