@@ -23,7 +23,27 @@ https://news.naver.com//main/ranking/read.nhn?mid=etc&sid1=111&rankingType=popul
 https://news.naver.com//main/ranking/read.nhn?mid=etc&sid1=111&rankingType=popular_day&oid=025&aid=0003007120&date=20200607&type=1&rankingSeq=3&rankingSectionId=104
 ...
 ```
-Feel free to go to any link for more details about the article.
+
+
+## Update
+Put article number to read the body or the article you want to read when prompt like this:
+```
+읽고 싶으신 기사 번호를 선택하세요:
+```
+
+The result follows as:
+```
+읽고 싶으신 기사 번호를 선택하세요: 2
+
+2| "개성에 남겨둔 자산 9000억…억장 무너져"
+  애타는 개성공단 입주기업들
+  현대아산도 긴급 대책회의
+  ◆ 벼랑 끝 남북관계 ◆
+  정기섭 개성공단기업협회장(앞줄 왼쪽)과 입주 기업 대표들이 17일 여의도 개성공단협회에서 기자회견을 열고 있다. [한주형 기자]
+  북한이 16일 개성 남북공동연락사무소를 폭파한 것에 대해 개성공단 입주기업들이 "억장이 무너진다"며 우리 정부에 사태 해결을 촉구하고 나섰다. 이들은 북한이 예고한 '개성공단 완전 철거'도 현실화될 가능성이 높아진 것으로 우려하고 있다.
+  17일 개성공단기업협회 비상대책위원회는 입장문을 내고 "개성공단은 남북 국민들의 땀과 열정으로 가꾸어온 평화 공단"이라며 "공단 재개를 영구히 막는 더 이상의 조치를 자제할 것을 촉구한다"고 밝혔다.
+...
+```
 
 ## Required
 - Run ```$ pip install -r requirements.txt``` in your terminal to install required python libraries.
